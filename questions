@@ -1,0 +1,83 @@
+Evaluating a biological target (Target $X$) for a specific disease or oncology indication (Disease $Y$) requires a comprehensive bioinformatics investigation.
+
+The exhaustive checklist below organizes the critical questions a bioinformatics specialist must answer, structured across the primary analytical domains of target evaluation.
+
+---
+
+### 1. Data Integrity, QC & Cohort Standardization
+
+* **Metadata & Annotations:** Are clinical annotations (age, sex, stage, grade, treatment history, response status) consistent, clean, and complete across public (TCGA, GEO, ICGC) and proprietary cohorts?
+* **Batch Effects & Confounding:** Are there batch effects across sequencing runs, extraction methods, or processing dates? Have technical covariates (e.g., total read depth, mitochondrial read percentage, ribosomal content) been decoupled from biological signals?
+* **Normalization & Mapping Alignment:** Which reference genome build (GRCh38 vs. CHM13) and gene model (Ensembl vs. RefSeq) were used? Are splicing isoform annotations harmonized across datasets?
+* **Tissue & Sample Quality:** What are the RNA Integrity Numbers (RIN) or FFPE degradation metrics across tumor vs. adjacent normal tissues?
+
+---
+
+### 2. Differential Expression & Pan-Disease Specificity
+
+* **Disease vs. Normal Expression:** Is Target $X$ significantly over- or under-expressed in diseased tissue compared to matched and unmatched normal controls (e.g., GTEx baseline tissue atlas)?
+* **Indication Selectivity:** Is the expression of Target $X$ specific to Disease $Y$, or is it broadly overexpressed across multiple indications (Pan-Cancer/Pan-Inflammatory)?
+* **Subtype & Stratification Enrichment:** Is Target $X$ enriched in specific disease subtypes (e.g., TNBC vs. ER+ breast cancer, $KRAS$-mutant vs. wild-type PDAC) or specific clinical stages/grades?
+* **Transcript & Isoform Resolution:** Which specific isoform or splice variant of Gene $X$ is pathogenic or overexpressed in Disease $Y$? Are there tumor-specific neo-isoforms or alternative promoter usages?
+
+---
+
+### 3. Single-Cell & Spatial Microenvironment Resolution
+
+* **Cellular Lineage Specificity:** Is expression of Target $X$ localized to malignant/pathogenic cells, or is it predominantly driven by stromal cells (e.g., myofibroblastic CAFs), immune infiltrates (e.g., TAMs), or endothelial cells?
+* **Intra-Tumoral Heterogeneity:** Is Target $X$ uniformly expressed across all tumor sub-clones, or is expression restricted to a minor subpopulation (risking therapeutic resistance)?
+* **Subcellular Localization:** Is Target $X$ expressed on the cell surface (membrane-bound), localized to the cytoplasm, secreted into the extracellular matrix (ECM), or strictly nuclear?
+* **Spatial Co-Localization:** In spatial transcriptomics/multiplex imaging, does Target $X$ co-localize with specific cell-cell communication hubs, immunosuppressive niches, or hypoxic regions?
+
+---
+
+### 4. Synthetic Lethality & Context Essentiality
+
+* **Gene Essentiality (DepMap/Achilles):** Is Target $X$ essential (low Chronos/CERES dependency score) specifically in cell-line models representing Disease $Y$?
+* **Lineage vs. Pan-Essentiality:** Is Target $X$ a selective lineage dependency, or is it a common pan-essential gene whose inhibition would cause system-wide toxicity?
+* **Synthetic Lethal Partners:** Is Target $X$ dependency contingent upon specific co-occurring mutations (e.g., $TP53$, $KRAS$, $BRCA1/2$ loss), copy number loss, or methylation silencings?
+* **Paralog Redundancy:** Does Gene $X$ have functional paralogs (e.g., duplicate sequence alignment or functional overlap) that could compensate for its loss or inhibition?
+
+---
+
+### 5. Multi-Omics Integration & Genomic Alterations
+
+* **Genomic Copy Number Status:** Is expression driven by copy number amplification (CNA), or is it dysregulated via epigenetic/transcriptional mechanisms?
+* **Mutation Profile & Hotspots:** Are there recurrent somatic mutations, frame-shifts, or structural variants in Target $X$ across patient cohorts? Do these mutations alter therapeutic binding pockets?
+* **Gene Fusions & Chimeras:** Are there oncogenic gene fusions involving Target $X$ (e.g., $ALK$, $ROS1$, $NTRK$ fusions)?
+* **Epigenetic Regulation:** Does target expression correlate with promoter hypomethylation or specific enhancer/chromatin accessibility profiles (ATAC-seq)?
+
+---
+
+### 6. Clinical Outcomes & Prognostic Value
+
+* **Patient Survival Correlation:** Does high (or low) expression of Target $X$ correlate significantly with Overall Survival (OS), Progression-Free Survival (PFS), or Disease-Free Survival (DFS) in univariate and multivariate Cox proportional hazards models?
+* **Confounding Clinical Features:** Does Target $X$ remain an independent prognostic biomarker when controlling for patient age, tumor stage, grade, mutation burden (TMB), and treatment history?
+* **Treatment Resistance Marker:** Does Target $X$ expression increase following standard-of-care relapse (e.g., post-chemotherapy, targeted kinase inhibitors, or checkpoint blockade)?
+
+---
+
+### 7. Druggability, Structure & Therapeutic Modality
+
+* **Structural Coverage (PDB/AlphaFold):** Are high-resolution 3D structures or reliable AlphaFold models available for Target $X$?
+* **Binding Pocket Assessment:** Does the protein contain well-defined, druggable hydrophobic pockets or active catalytic sites suitable for small molecules?
+* **Modality Alignment:** Based on subcellular localization and surface topology, which modality is optimal: Small Molecule inhibitor/agonist, Monoclonal Antibody (mAb), Antibody-Drug Conjugate (ADC), Targeted Protein Degrader (PROTAC/molecular glue), or CAR-T/T-cell engager?
+* **Epitope & Domain Accessibility:** If pursuing an antibody or ADC strategy, are extracellular domains (ECD) accessible, non-glycosylated, and conserved across species (human vs. cynomolgus vs. mouse)?
+
+---
+
+### 8. Safety, Toxicity & Off-Target Risk
+
+* **Healthy Tissue Expression Profile:** What is the baseline expression level of Target $X$ across vital organ systems (heart, liver, brain, lung, kidney) in GTEx and single-cell tissue atlases?
+* **Essentiality in Normal Stem Cells:** Is Gene $X$ essential for normal tissue homeostasis, hematopoiesis, or regenerative stem cell niches?
+* **Cross-Reactivity & Off-Target Profiling:** Does Target $X$ share high sequence homology or structural similarity with off-target family members that could cause toxicities if inadvertently inhibited?
+* **Immune Tolerability:** Is Target $X$ expressed on normal peripheral blood mononuclear cells (PBMCs), creating a potential "sink" effect or systemic immune toxicity for bi-specifics/CAR-Ts?
+
+---
+
+### 9. Literature, Pathway Topology & Network Biology
+
+* **Pathway Position & Redundancy:** Is Target $X$ a central node ("hub" or bottleneck) in a critical disease pathway (e.g., MAPK, PI3K/AKT, Wnt, JAK/STAT), or is it a peripheral node easily bypassed by parallel signaling loops?
+* **Protein-Protein Interaction (PPI) Network:** What are the primary binding partners of Target $X$? Does targeting $X$ disrupt key multiprotein complexes?
+* **Direction of Effect Consistency:** Does the functional literature consensus align on directionality—i.e., is Target $X$ unequivocally an oncogene/driver (requiring inhibition) or a tumor suppressor (requiring activation/rescue)?
+* **Patent & Landscape Crowding:** How saturated is the competitive literature, drug pipeline (ChEMBL, ClinicalTrials.gov), and patent landscape surrounding Target $X$?
